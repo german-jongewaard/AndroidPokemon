@@ -13,6 +13,13 @@ import android.view.ViewGroup;
  */
 public class PokemonDetail extends Fragment {
 
+    static PokemonDetail instance;
+
+    public static PokemonDetail getInstance() {
+        if(instance == null)
+            instance = new PokemonDetail();
+        return instance;
+    }
 
     public PokemonDetail() {
         // Required empty public constructor
