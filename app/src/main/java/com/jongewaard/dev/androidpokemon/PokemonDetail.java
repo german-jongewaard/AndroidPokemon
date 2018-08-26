@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.jongewaard.dev.androidpokemon.Adapter.PokemonTypeAdapter;
 import com.jongewaard.dev.androidpokemon.Common.Common;
 import com.jongewaard.dev.androidpokemon.model.Pokemon;
 
@@ -94,7 +95,10 @@ public class PokemonDetail extends Fragment {
         pokemon_height.setText("Height" + pokemon.getHeight());
 
 
+        //Set Type
+        PokemonTypeAdapter typeAdapter = new PokemonTypeAdapter(getActivity(), pokemon.getType());
 
+        recycler_type.setAdapter(typeAdapter);
 
 
 
