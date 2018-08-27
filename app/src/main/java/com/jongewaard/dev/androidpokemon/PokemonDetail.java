@@ -100,8 +100,12 @@ public class PokemonDetail extends Fragment {
         recycler_type.setAdapter(typeAdapter);
 
         //Set Weakness
-        /*PokemonTypeAdapter typeAdapter = new PokemonTypeAdapter(getActivity(), pokemon.getType());
-        recycler_type.setAdapter(typeAdapter);*/
+        PokemonTypeAdapter weaknessAdapter = new PokemonTypeAdapter(getActivity(), pokemon.getWeaknesses());
+        recycler_weakness.setAdapter(weaknessAdapter);
+
+        //Set Weakness
+        PokemonTypeAdapter prevEvolutionAdapter = new PokemonTypeAdapter(getActivity(), pokemon.);
+        recycler_prev_evolution.setAdapter(prevEvolutionAdapter);
 
 
 
