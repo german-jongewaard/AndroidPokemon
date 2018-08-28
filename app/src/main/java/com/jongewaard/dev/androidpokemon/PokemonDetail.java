@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.jongewaard.dev.androidpokemon.Adapter.PokemonEvolutionAdapter;
 import com.jongewaard.dev.androidpokemon.Adapter.PokemonTypeAdapter;
 import com.jongewaard.dev.androidpokemon.Common.Common;
 import com.jongewaard.dev.androidpokemon.model.Pokemon;
@@ -103,10 +104,14 @@ public class PokemonDetail extends Fragment {
         PokemonTypeAdapter weaknessAdapter = new PokemonTypeAdapter(getActivity(), pokemon.getWeaknesses());
         recycler_weakness.setAdapter(weaknessAdapter);
 
-        //Set Weakness
-        PokemonTypeAdapter prevEvolutionAdapter = new PokemonTypeAdapter(getActivity(), pokemon.);
-        recycler_prev_evolution.setAdapter(prevEvolutionAdapter);
+        //Set Evolution
+        PokemonEvolutionAdapter preEvolutionAdapter = new PokemonEvolutionAdapter(getActivity(), pokemon.getPrev_evolution());
+        recycler_prev_evolution.setAdapter(preEvolutionAdapter);
 
+
+        //Set Evolution
+        PokemonEvolutionAdapter nextEvolutionAdapter = new PokemonEvolutionAdapter(getActivity(), pokemon.getNext_evolution());
+        recycler_next_evolution.setAdapter(nextEvolutionAdapter);
 
 
 

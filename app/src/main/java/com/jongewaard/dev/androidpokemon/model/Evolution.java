@@ -1,14 +1,14 @@
 package com.jongewaard.dev.androidpokemon.model;
 
-public class NextEvolution {
+public class Evolution {
 
     public String num;
     public String name;
 
-    public NextEvolution() {
+    public Evolution() {
     }
 
-    public NextEvolution(String num, String name) {
+    public Evolution(String num, String name) {
         this.num = num;
         this.name = name;
     }

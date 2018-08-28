@@ -8,6 +8,13 @@
     android:background="@color/colorPrimary"
     tools:context=".PokemonDetail">
 
+    <android.support.v4.widget.NestedScrollView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+         >
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -17,6 +24,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardElevation="0dp"
@@ -118,5 +126,7 @@
             android:layout_height="150dp" />
 
     </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
 
 </RelativeLayout>
