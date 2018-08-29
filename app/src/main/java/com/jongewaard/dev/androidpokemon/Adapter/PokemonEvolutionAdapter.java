@@ -1,7 +1,9 @@
 package com.jongewaard.dev.androidpokemon.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,13 +53,6 @@ public class PokemonEvolutionAdapter extends RecyclerView.Adapter<PokemonEvoluti
                         .get(0)
                 )
         );
-
-        holder.setIItemClickListener(new IItemClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Toast.makeText(mContext, "click to evolution Pokemon", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
@@ -68,11 +63,6 @@ public class PokemonEvolutionAdapter extends RecyclerView.Adapter<PokemonEvoluti
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         Chip chip;
-        IItemClickListener mIItemClickListener;
-
-        public void setIItemClickListener(IItemClickListener IItemClickListener) {
-            mIItemClickListener = IItemClickListener;
-        }
 
         public MyViewHolder(View itemView){
             super(itemView);
@@ -80,7 +70,8 @@ public class PokemonEvolutionAdapter extends RecyclerView.Adapter<PokemonEvoluti
             chip.setOnChipClickListener(new OnChipClickListener() {
                 @Override
                 public void onChipClick(View v) {
-                    mIItemClickListener.onClick(v, getAdapterPosition());
+                    LocalBroadcastManager.getInstance(mContext)
+                            .sendBroadcast(new Intent(Common.KEY_NUM_EVOLUTION).putExtra("num", evolution.get(getAdapterPosition()).getNum()));
                 }
             });
         }
