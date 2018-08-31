@@ -15,6 +15,10 @@ import com.jongewaard.dev.androidpokemon.Common.ItemOffsetDecoration;
 import com.jongewaard.dev.androidpokemon.Retrofit.IPokemonDex;
 import com.jongewaard.dev.androidpokemon.Retrofit.RetrofitClient;
 import com.jongewaard.dev.androidpokemon.model.Pokedex;
+import com.mancj.materialsearchbar.MaterialSearchBar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -31,6 +35,12 @@ public class PokemonList extends Fragment {
     IPokemonDex mIPokemonDex;
     CompositeDisposable mCompositeDisposable = new CompositeDisposable();
     RecyclerView pokemon_list_recyclerview;
+
+    PokemonListAdapter adapter, search_adapter;
+    List<String> last_suggest = new ArrayList<>();
+
+    MaterialSearchBar searchBar;
+
 
     static PokemonList instance;
     
@@ -63,6 +73,8 @@ public class PokemonList extends Fragment {
         ItemOffsetDecoration itemOffsetDecoration = new ItemOffsetDecoration(getActivity(), R.dimen.spacing);
         pokemon_list_recyclerview.addItemDecoration(itemOffsetDecoration);
 
+        //Setup SearchBar
+
         fetchData();
 
         return view;
@@ -76,7 +88,7 @@ public class PokemonList extends Fragment {
                     @Override
                     public void accept(Pokedex pokedex) throws Exception {
                         Common.commonPokemonList = pokedex.getPokemon();
-                        PokemonListAdapter adapter = new PokemonListAdapter(getActivity(), Common.commonPokemonList);
+                        adapter = new PokemonListAdapter(getActivity(), Common.commonPokemonList);
 
                         pokemon_list_recyclerview.setAdapter(adapter);
                     }
