@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import com.jongewaard.dev.androidpokemon.Common.ItemOffsetDecoration;
 import com.jongewaard.dev.androidpokemon.Retrofit.IPokemonDex;
 import com.jongewaard.dev.androidpokemon.Retrofit.RetrofitClient;
 import com.jongewaard.dev.androidpokemon.model.Pokedex;
+import com.jongewaard.dev.androidpokemon.model.Pokemon;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
@@ -74,10 +77,62 @@ public class PokemonList extends Fragment {
         pokemon_list_recyclerview.addItemDecoration(itemOffsetDecoration);
 
         //Setup SearchBar
+        searchBar = (MaterialSearchBar)view.findViewById(R.id.search_bar);
+        searchBar.setHint("Enter Pokemon name");
+        searchBar.setCardViewElevation(10);
+        searchBar.addTextChangeListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    List<String> suggest = new ArrayList<>();
+                    for(String search:last_suggest){
+
+                        if(search.toLowerCase().contains(searchBar.getText().toLowerCase()))
+                            suggest.add(search);
+                    }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        searchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
+            @Override
+            public void onSearchStateChanged(boolean enabled) {
+                if(!enabled)
+                    pokemon_list_recyclerview.setAdapter(adapter); //Return default adapter
+            }
+
+            @Override
+            public void onSearchConfirmed(CharSequence text) {
+                startSearch(text);
+            }
+
+            @Override
+            public void onButtonClicked(int buttonCode) {
+
+            }
+        });
 
         fetchData();
 
         return view;
+    }
+
+    private void startSearch(CharSequence text) {
+        if(Common.commonPokemonList.size() > 0){
+            List<Pokemon> result = new ArrayList<>();
+            for(Pokemon pokemon:Common.commonPokemonList)
+                if(pokemon.getName().contains(text))
+                    result.add(pokemon);
+            search_adapter = new PokemonListAdapter(getActivity(), result);
+            pokemon_list_recyclerview.setAdapter(adapter);
+        }
     }
 
     private void fetchData() {
@@ -91,6 +146,10 @@ public class PokemonList extends Fragment {
                         adapter = new PokemonListAdapter(getActivity(), Common.commonPokemonList);
 
                         pokemon_list_recyclerview.setAdapter(adapter);
+
+                        for(Pokemon pokemon:Common.commonPokemonList)
+                            last_suggest.add(pokemon.getName());
+                        searchBar.setVisibility(View.VISIBLE); // Display search bar after load
                     }
                 })
         );
