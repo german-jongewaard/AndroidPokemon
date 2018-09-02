@@ -147,9 +147,10 @@ public class PokemonList extends Fragment {
 
                         pokemon_list_recyclerview.setAdapter(adapter);
 
+                        last_suggest.clear();
                         for(Pokemon pokemon:Common.commonPokemonList)
                             last_suggest.add(pokemon.getName());
-                        searchBar.setVisibility(View.VISIBLE); // Display search bar after load
+                        searchBar.setVisibility(View.VISIBLE); // Display search bar after load all pokemon from DB
                     }
                 })
         );

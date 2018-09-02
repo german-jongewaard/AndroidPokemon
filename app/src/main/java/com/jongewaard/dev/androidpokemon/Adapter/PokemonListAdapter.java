@@ -44,15 +44,14 @@ public class PokemonListAdapter extends RecyclerView.Adapter<PokemonListAdapter.
         Glide.with(mContext).load(mPokemonList.get(position).getImg()).into(holder.pokemon_image);
         //Set Name
         holder.pokemon_name.setText(mPokemonList.get(position).getName());
-        
+        //Event
         holder.setIItemClickListener(new IItemClickListener() {
             @Override
             public void onClick(View view, int position) {
                 //Toast.makeText(mContext, "Click at Pokemon" + mPokemonList.get(position).getName(), Toast.LENGTH_LONG).show();
 
-
                 LocalBroadcastManager.getInstance(mContext)
-                        .sendBroadcast(new Intent(Common.KEY_ENABLE_HOME).putExtra("position", position));
+                        .sendBroadcast(new Intent(Common.KEY_ENABLE_HOME).putExtra("num", mPokemonList.get(position).getNum()));
 
             }
         });
