@@ -52,7 +52,7 @@ public class PokemonDetail extends Fragment {
         View itemView = inflater.inflate(R.layout.fragment_pokemon_detail, container, false);
 
         Pokemon pokemon;
-        //Getposition from Argument (el bundle que puse en el Main bundle.putInt("position", position);
+        //Get position from Argument (el bundle que puse en el Main bundle.putInt("position", position);
         if(getArguments().get("num") == null)
             pokemon = Common.commonPokemonList.get(getArguments().getInt("position"));
         else
