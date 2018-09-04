@@ -51,12 +51,7 @@ public class PokemonDetail extends Fragment {
         // Inflate the layout for this fragment
         View itemView = inflater.inflate(R.layout.fragment_pokemon_detail, container, false);
 
-        Pokemon pokemon;
-        //Get position from Argument (el bundle que puse en el Main bundle.putInt("position", position);
-        if(getArguments().get("num") == null)
-            pokemon = Common.commonPokemonList.get(getArguments().getInt("position"));
-        else
-            pokemon = Common.findPokemonByNum(getArguments().getString("num"));
+        Pokemon pokemon = Common.findPokemonByNum(getArguments().getString("num"));
 
         pokemon_img = (ImageView)itemView.findViewById(R.id.pokemon_image);
         pokemon_name = (TextView) itemView.findViewById(R.id.name);
