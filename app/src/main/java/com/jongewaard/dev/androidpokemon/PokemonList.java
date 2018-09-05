@@ -128,10 +128,10 @@ public class PokemonList extends Fragment {
         if(Common.commonPokemonList.size() > 0){
             List<Pokemon> result = new ArrayList<>();
             for(Pokemon pokemon:Common.commonPokemonList)
-                if(pokemon.getName().contains(text))
+                if(pokemon.getName().toLowerCase().contains(text.toString().toLowerCase()))
                     result.add(pokemon);
             search_adapter = new PokemonListAdapter(getActivity(), result);
-            pokemon_list_recyclerview.setAdapter(adapter);
+            pokemon_list_recyclerview.setAdapter(search_adapter);
         }
     }
 
@@ -151,6 +151,7 @@ public class PokemonList extends Fragment {
                         for(Pokemon pokemon:Common.commonPokemonList)
                             last_suggest.add(pokemon.getName());
                         searchBar.setVisibility(View.VISIBLE); // Display search bar after load all pokemon from DB
+                        searchBar.setLastSuggestions(last_suggest);
                     }
                 })
         );
