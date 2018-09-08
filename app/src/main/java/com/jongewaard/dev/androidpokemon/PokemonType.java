@@ -34,6 +34,8 @@ public class PokemonType extends Fragment {
     static PokemonType instance;
 
     public static PokemonType getInstance() {
+        if(instance == null)
+            instance = new PokemonType();
         return instance;
     }
 
