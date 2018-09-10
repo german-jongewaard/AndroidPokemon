@@ -3,12 +3,16 @@ package com.jongewaard.dev.androidpokemon;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.jongewaard.dev.androidpokemon.Adapter.PokemonListAdapter;
+import com.jongewaard.dev.androidpokemon.Common.ItemOffsetDecoration;
 import com.jongewaard.dev.androidpokemon.Retrofit.IPokemonDex;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
@@ -49,6 +53,56 @@ public class PokemonType extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pokemon_type, container, false);
+
+        pokemon_list_recyclerview = (RecyclerView)view.findViewById(R.id.pokemon_list_recyclerview);
+        pokemon_list_recyclerview.setHasFixedSize(true);
+        pokemon_list_recyclerview.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        //Decoration
+        ItemOffsetDecoration itemOffsetDecoration = new ItemOffsetDecoration(getActivity(), R.dimen.spacing);
+        pokemon_list_recyclerview.addItemDecoration(itemOffsetDecoration);
+
+        //Setup SearchBar
+        searchBar = (MaterialSearchBar)view.findViewById(R.id.search_bar);
+        searchBar.setHint("Enter Pokemon name");
+        searchBar.setCardViewElevation(10);
+        searchBar.addTextChangeListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                List<String> suggest = new ArrayList<>();
+                for(String search:last_suggest){
+
+                    if(search.toLowerCase().contains(searchBar.getText().toLowerCase()))
+                        suggest.add(search);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        searchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
+            @Override
+            public void onSearchStateChanged(boolean enabled) {
+                if(!enabled)
+                    pokemon_list_recyclerview.setAdapter(adapter); //Return default adapter
+            }
+
+            @Override
+            public void onSearchConfirmed(CharSequence text) {
+                startSearch(text);
+            }
+
+            @Override
+            public void onButtonClicked(int buttonCode) {
+
+            }
+        });
 
         return view;
     }
