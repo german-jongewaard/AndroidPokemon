@@ -12,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jongewaard.dev.androidpokemon.Adapter.PokemonListAdapter;
+import com.jongewaard.dev.androidpokemon.Common.Common;
 import com.jongewaard.dev.androidpokemon.Common.ItemOffsetDecoration;
 import com.jongewaard.dev.androidpokemon.Retrofit.IPokemonDex;
+import com.jongewaard.dev.androidpokemon.model.Pokemon;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
@@ -105,6 +107,17 @@ public class PokemonType extends Fragment {
         });
 
         return view;
+    }
+
+    private void startSearch(CharSequence text) {
+        if(Common.commonPokemonList.size() > 0){
+            List<Pokemon> result = new ArrayList<>();
+            for(Pokemon pokemon:Common.commonPokemonList)
+                if(pokemon.getName().toLowerCase().contains(text.toString().toLowerCase()))
+                    result.add(pokemon);
+            search_adapter = new PokemonListAdapter(getActivity(), result);
+            pokemon_list_recyclerview.setAdapter(search_adapter);
+        }
     }
 
 }
