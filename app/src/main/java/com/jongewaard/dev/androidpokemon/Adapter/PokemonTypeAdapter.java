@@ -2,6 +2,7 @@ package com.jongewaard.dev.androidpokemon.Adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,12 +39,7 @@ public class PokemonTypeAdapter extends RecyclerView.Adapter<PokemonTypeAdapter.
 
         holder.chip.setChipText(typeList.get(position));
         holder.chip.changeBackgroundColor(Common.getColorByType(typeList.get(position)));
-        holder.setIItemClickListener(new IItemClickListener() {
-            @Override
-            public void onClick(View view, int position) {
 
-            }
-        });
 
     }
 
@@ -55,11 +51,9 @@ public class PokemonTypeAdapter extends RecyclerView.Adapter<PokemonTypeAdapter.
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         Chip chip;
-        IItemClickListener mIItemClickListener;
 
-        public void setIItemClickListener(IItemClickListener IItemClickListener) {
-            mIItemClickListener = IItemClickListener;
-        }
+
+
 
         public MyViewHolder(View itemView){
             super(itemView);
@@ -67,7 +61,9 @@ public class PokemonTypeAdapter extends RecyclerView.Adapter<PokemonTypeAdapter.
             chip.setOnChipClickListener(new OnChipClickListener() {
                 @Override
                 public void onChipClick(View v) {
-                    mIItemClickListener.onClick(v, getAdapterPosition());
+
+                    LocalBroadcastManager.getInstance(mContext)
+
                 }
             });
         }
