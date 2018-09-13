@@ -1,6 +1,7 @@
 package com.jongewaard.dev.androidpokemon.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.RecyclerView;
@@ -63,6 +64,7 @@ public class PokemonTypeAdapter extends RecyclerView.Adapter<PokemonTypeAdapter.
                 public void onChipClick(View v) {
 
                     LocalBroadcastManager.getInstance(mContext)
+                            .sendBroadcast(new Intent(Common.KEY_POKEMON_TYPE).putExtra("type"));
 
                 }
             });
