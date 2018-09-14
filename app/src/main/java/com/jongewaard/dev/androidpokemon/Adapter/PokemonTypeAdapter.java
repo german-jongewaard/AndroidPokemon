@@ -64,7 +64,7 @@ public class PokemonTypeAdapter extends RecyclerView.Adapter<PokemonTypeAdapter.
                 public void onChipClick(View v) {
 
                     LocalBroadcastManager.getInstance(mContext)
-                            .sendBroadcast(new Intent(Common.KEY_POKEMON_TYPE).putExtra("type"));
+                            .sendBroadcast(new Intent(Common.KEY_POKEMON_TYPE).putExtra("type", typeList.get(getAdapterPosition())));
 
                 }
             });
