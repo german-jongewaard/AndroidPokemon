@@ -1,5 +1,6 @@
 package com.jongewaard.dev.androidpokemon.Common;
 
+import android.content.Intent;
 import android.graphics.Color;
 
 import com.jongewaard.dev.androidpokemon.model.Pokemon;
@@ -9,6 +10,7 @@ import java.util.List;
 
 public class Common {
 
+    public static final String KEY_POKEMON_TYPE = "type";
     public static List<Pokemon> commonPokemonList = new ArrayList<>();
     public static final String KEY_ENABLE_HOME = "position";
     public static final String KEY_NUM_EVOLUTION = "num";
