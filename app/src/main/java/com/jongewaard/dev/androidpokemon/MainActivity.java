@@ -22,6 +22,34 @@ public class MainActivity extends AppCompatActivity {
 
    Toolbar mToolbar;
 
+
+    BroadcastReceiver showPokemonType = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(intent.getAction().toString().equals(Common.KEY_POKEMON_TYPE)){
+
+
+                //Remplace FRAGMENT
+                Fragment pokemonType = PokemonDetail.getInstance();
+                //int position = intent.getIntExtra("position", -1);
+                String num = intent.getStringExtra("num");
+                Bundle bundle = new Bundle();
+                bundle.putString("num", num);
+                detailFragment.setArguments(bundle);
+
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.list_pokemon_fragment, detailFragment);
+                fragmentTransaction.addToBackStack("detail");
+                fragmentTransaction.commit();
+
+                //Set Pokemon Name for Toolbar
+                Pokemon pokemon = Common.findPokemonByNum(num);
+                mToolbar.setTitle(pokemon.getName());
+
+            }
+        }
+    };
+
    BroadcastReceiver showDetail = new BroadcastReceiver() {
        @Override
        public void onReceive(Context context, Intent intent) {
