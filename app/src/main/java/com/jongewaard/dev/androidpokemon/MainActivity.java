@@ -35,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
                 String num = intent.getStringExtra("num");
                 Bundle bundle = new Bundle();
                 bundle.putString("num", num);
-                detailFragment.setArguments(bundle);
+                pokemonType.setArguments(bundle);
 
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.list_pokemon_fragment, detailFragment);
+                fragmentTransaction.replace(R.id.list_pokemon_fragment, pokemonType);
                 fragmentTransaction.addToBackStack("detail");
                 fragmentTransaction.commit();
 
