@@ -39,12 +39,10 @@ public class MainActivity extends AppCompatActivity {
 
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.list_pokemon_fragment, pokemonType);
-                fragmentTransaction.addToBackStack("detail");
-                fragmentTransaction.commit();
+                 fragmentTransaction.commit();
 
-                //Set Pokemon Name for Toolbar
-                Pokemon pokemon = Common.findPokemonByNum(type);
-                mToolbar.setTitle(pokemon.getName());
+
+                mToolbar.setTitle("POKEMON TYPE " + type.toUpperCase());
 
             }
         }
