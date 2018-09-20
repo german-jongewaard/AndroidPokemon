@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
    Toolbar mToolbar;
 
-
+    //BroadcastReceiver showPokemonType
     BroadcastReceiver showPokemonType = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -48,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-   BroadcastReceiver showDetail = new BroadcastReceiver() {
+    //BroadcastReceiver showDetail
+    BroadcastReceiver showDetail = new BroadcastReceiver() {
        @Override
        public void onReceive(Context context, Intent intent) {
                 if(intent.getAction().toString().equals(Common.KEY_ENABLE_HOME)){
@@ -73,9 +74,10 @@ public class MainActivity extends AppCompatActivity {
                     mToolbar.setTitle(pokemon.getName());
 
                 }
-       }
-   };
+         }
+    };
 
+    //BroadcastReceiver showEvolution
     BroadcastReceiver showEvolution = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -120,6 +122,10 @@ public class MainActivity extends AppCompatActivity {
         //Register Broadcast
         LocalBroadcastManager.getInstance(this)
                 .registerReceiver(showEvolution, new IntentFilter(Common.KEY_NUM_EVOLUTION));
+
+        //Register Broadcast
+        LocalBroadcastManager.getInstance(this)
+                .registerReceiver(showPokemonType, new IntentFilter(Common.KEY_POKEMON_TYPE));
     }
 
     @Override
@@ -137,7 +143,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             default:
                 break;
-
 
         }
         return true;
