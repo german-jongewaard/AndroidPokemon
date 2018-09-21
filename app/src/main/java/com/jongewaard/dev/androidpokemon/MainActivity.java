@@ -125,7 +125,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Register Broadcast
         LocalBroadcastManager.getInstance(this)
-                .registerReceiver(showPokemonType, new IntentFilter(Common.KEY_POKEMON_TYPE));
+                .registerReceiver(showPokemonType, new IntentFilter(Common.KEY_POKEMON_TYPE
+                ));
     }
 
     @Override

@@ -18,6 +18,7 @@ import com.jongewaard.dev.androidpokemon.Retrofit.IPokemonDex;
 import com.jongewaard.dev.androidpokemon.model.Pokemon;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
+import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,6 +106,12 @@ public class PokemonType extends Fragment {
 
             }
         });
+
+        if (getArguments() != null)
+        {
+            String type = getArguments().getString("type");
+
+        }
 
         return view;
     }
