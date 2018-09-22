@@ -31,12 +31,14 @@ import io.reactivex.disposables.CompositeDisposable;
 public class PokemonType extends Fragment {
 
 
-     RecyclerView pokemon_list_recyclerview;
+    RecyclerView pokemon_list_recyclerview;
 
     PokemonListAdapter adapter, search_adapter;
     List<String> last_suggest = new ArrayList<>();
 
     MaterialSearchBar searchBar;
+
+    List<Pokemon> typeList;
 
     static PokemonType instance;
 
@@ -110,8 +112,12 @@ public class PokemonType extends Fragment {
         if (getArguments() != null)
         {
             String type = getArguments().getString("type");
-
+            if(type != null)
+            {
+                 typeList = Common.findPokemonsByType(type);
+            }
         }
+
 
         return view;
     }
