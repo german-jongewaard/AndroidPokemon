@@ -126,7 +126,7 @@ public class PokemonType extends Fragment {
     }
 
     private void loadSuggest() {
-
+        last_suggest.clear();
     }
 
     private void startSearch(CharSequence text) {
