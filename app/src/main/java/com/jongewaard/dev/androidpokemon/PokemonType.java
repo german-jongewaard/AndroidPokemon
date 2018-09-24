@@ -127,6 +127,13 @@ public class PokemonType extends Fragment {
 
     private void loadSuggest() {
         last_suggest.clear();
+        if (typeList.size() > 0)
+        {
+            for(Pokemon pokemon:typeList)
+                last_suggest.add(pokemon.getName());
+            searchBar.setLastSuggestions(last_suggest);
+
+        }
     }
 
     private void startSearch(CharSequence text) {
