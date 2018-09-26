@@ -146,7 +146,8 @@ public class MainActivity extends AppCompatActivity {
                 //Replace Fragment
                 Fragment pokemonList = PokemonList.getInstance();
 
-
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.remove(pokemonList);
 
 
                 break;
