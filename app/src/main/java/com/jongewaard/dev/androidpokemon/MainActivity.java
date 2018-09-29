@@ -139,9 +139,6 @@ public class MainActivity extends AppCompatActivity {
 
                 //Clear all fragment detail and pop to list fragment
                 getSupportFragmentManager().popBackStack("detail", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                getSupportActionBar().setDisplayShowHomeEnabled(false);
-                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-
 
                 //Replace Fragment
                 Fragment pokemonList = PokemonList.getInstance();
@@ -150,6 +147,9 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTransaction.remove(pokemonList);
                 fragmentTransaction.replace(R.id.list_pokemon_fragment, pokemonList);
                 fragmentTransaction.commit();
+
+                getSupportActionBar().setDisplayShowHomeEnabled(false);
+                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
 
                 break;

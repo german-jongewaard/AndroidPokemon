@@ -137,9 +137,9 @@ public class PokemonType extends Fragment {
     }
 
     private void startSearch(CharSequence text) {
-        if(Common.commonPokemonList.size() > 0){
+        if(typeList.size() > 0){
             List<Pokemon> result = new ArrayList<>();
-            for(Pokemon pokemon:Common.commonPokemonList)
+            for(Pokemon pokemon:typeList)
                 if(pokemon.getName().toLowerCase().contains(text.toString().toLowerCase()))
                     result.add(pokemon);
             search_adapter = new PokemonListAdapter(getActivity(), result);
