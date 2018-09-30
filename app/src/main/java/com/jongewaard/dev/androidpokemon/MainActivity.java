@@ -37,9 +37,12 @@ public class MainActivity extends AppCompatActivity {
                 bundle.putString("type", type);
                 pokemonType.setArguments(bundle);
 
+                getSupportFragmentManager().popBackStack(0,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.list_pokemon_fragment, pokemonType);
-                 fragmentTransaction.commit();
+                fragmentTransaction.addToBackStack("type");
+                fragmentTransaction.commit();
 
 
                 mToolbar.setTitle("POKEMON TYPE " + type.toUpperCase());
