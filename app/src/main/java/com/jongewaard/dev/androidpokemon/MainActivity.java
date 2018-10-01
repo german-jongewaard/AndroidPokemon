@@ -142,6 +142,8 @@ public class MainActivity extends AppCompatActivity {
 
                 //Clear all fragment detail and pop to list fragment
                 getSupportFragmentManager().popBackStack("detail", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                getSupportFragmentManager().popBackStack("type", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
 
                 //Replace Fragment
                 Fragment pokemonList = PokemonList.getInstance();

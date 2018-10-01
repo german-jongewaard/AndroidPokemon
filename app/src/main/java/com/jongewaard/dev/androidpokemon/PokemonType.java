@@ -116,6 +116,7 @@ public class PokemonType extends Fragment {
             {
                  typeList = Common.findPokemonsByType(type);
                  adapter = new PokemonListAdapter(getActivity(), typeList);
+                 pokemon_list_recyclerview.setAdapter(adapter);
 
                  loadSuggest();
             }
