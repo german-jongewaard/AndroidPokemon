@@ -53,7 +53,7 @@ public class PokemonDetail extends Fragment {
         Pokemon pokemon;
         //Getposition from Argument (el bundle que puse en el Main bundle.putInt("position", position);
         if(getArguments().get("num") == null)
-            pokemon = Common.commonPokeomList.get(getArguments().getInt("position"));
+            pokemon = Common.commonPokemonList.get(getArguments().getInt("position"));
         else
             pokemon = null;
 
@@ -97,8 +97,11 @@ public class PokemonDetail extends Fragment {
 
         //Set Type
         PokemonTypeAdapter typeAdapter = new PokemonTypeAdapter(getActivity(), pokemon.getType());
-
         recycler_type.setAdapter(typeAdapter);
+
+        //Set Weakness
+        /*PokemonTypeAdapter typeAdapter = new PokemonTypeAdapter(getActivity(), pokemon.getType());
+        recycler_type.setAdapter(typeAdapter);*/
 
 
 

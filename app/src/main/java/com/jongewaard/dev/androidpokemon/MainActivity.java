@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                     fragmentTransaction.commit();
 
                     //Set Pokemon Name for Toolbar
-                    Pokemon pokemon = Common.commonPokeomList.get(position);
+                    Pokemon pokemon = Common.commonPokemonList.get(position);
                     mToolbar.setTitle(pokemon.getName());
 
                 }

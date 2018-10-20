@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jongewaard.dev.androidpokemon.Common.Common;
 import com.jongewaard.dev.androidpokemon.Interface.IItemClickListener;
 import com.jongewaard.dev.androidpokemon.R;
 import com.robertlevonyan.views.chip.Chip;
@@ -36,6 +37,7 @@ public class PokemonTypeAdapter extends RecyclerView.Adapter<PokemonTypeAdapter.
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         holder.chip.setChipText(typeList.get(position));
+        holder.chip.changeBackgroundColor(Common.getColorByType(typeList.get(position)));
 
     }
 
