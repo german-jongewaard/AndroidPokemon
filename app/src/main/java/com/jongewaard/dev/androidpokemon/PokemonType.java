@@ -115,11 +115,18 @@ public class PokemonType extends Fragment {
             if(type != null)
             {
                  typeList = Common.findPokemonsByType(type);
+                 adapter = new PokemonListAdapter(getActivity(), typeList);
+
+                 loadSuggest();
             }
         }
 
 
         return view;
+    }
+
+    private void loadSuggest() {
+
     }
 
     private void startSearch(CharSequence text) {
